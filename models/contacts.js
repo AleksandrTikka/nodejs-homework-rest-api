@@ -1,13 +1,15 @@
 const fs = require("fs/promises");
 const path = require("path");
-const contactsPath = path.join(__dirname, "./contacts.json");
+const contactsPath = path.join(__dirname, "contacts65.json");
 const { uid } = require("uid");
 
 const listContacts = async () => {
   try {
     const data = await fs.readFile(contactsPath);
-    const contacts = JSON.parse(data);
-    return contacts;
+    if (!data) {
+      return null;
+    }
+    return JSON.parse(data);
   } catch (error) {
     console.log(error.message);
   }
@@ -17,6 +19,10 @@ const getContactById = async (contactId) => {
   try {
     const contacts = await listContacts();
     const contactById = contacts.find((contact) => contact.id === contactId);
+    if (!contactById) {
+      console.log(`There is no contact with ID: ${contactId}`);
+      return null;
+    }
     return contactById;
   } catch (error) {
     console.log(error.message);
@@ -27,6 +33,10 @@ const removeContact = async (contactId) => {
   try {
     const contacts = await listContacts();
     const index = contacts.findIndex((contact) => contact.id === contactId);
+    if (index === -1) {
+      console.log(`There is no contact with ID: ${contactId}`);
+      return null;
+    }
     const deletedContact = contacts.splice(index, 1);
     await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
     return deletedContact;
