@@ -18,8 +18,15 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
+  //деструктуризация по умолчанию, если статус не приходит,
+  // статус будет 500, если сообщение не приходит, то сообщение
+  // будет "Server error"
   const { status = 500, message = "Server error" } = err;
   res.status(status).json({ message: err.message });
+  /*это же можно записать так:
+  const status  = err.status || 500;
+  const message = err.message || "Server error"
+  */
 });
 
 module.exports = app;

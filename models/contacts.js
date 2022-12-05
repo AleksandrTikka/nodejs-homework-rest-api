@@ -1,6 +1,6 @@
 const fs = require("fs/promises");
 const path = require("path");
-const contactsPath = path.join(__dirname, "contacts65.json");
+const contactsPath = path.join(__dirname, "contacts.json");
 const { uid } = require("uid");
 
 const listContacts = async () => {
@@ -11,7 +11,8 @@ const listContacts = async () => {
     }
     return JSON.parse(data);
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
+    throw error;
   }
 };
 
@@ -62,12 +63,16 @@ const updateContact = async (contactId, body) => {
   try {
     const contacts = await listContacts();
     const index = contacts.findIndex((contact) => contact.id === contactId);
-    const updatedContact = contacts.splice(index, 1);
+    if (index === -1) {
+      console.log(`There is no contact with ID: ${contactId}`);
+      return null;
+    }
     const { name, email, phone } = body;
     const newContact = { id: contactId, name, email, phone };
     contacts.splice(index, 1, newContact);
     await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
-    return updatedContact;
+    console.log(newContact);
+    return newContact;
   } catch (error) {
     console.log(error.message);
   }
