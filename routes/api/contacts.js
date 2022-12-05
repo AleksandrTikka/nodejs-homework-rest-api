@@ -2,8 +2,6 @@ const express = require("express");
 
 const ctrl = require("../../controllers/contacts");
 
-// const { ctrlWrapper } = require("../../helpers");
-
 const validateBody = require("../../middlewares");
 
 const { addSchema } = require("../../schemas/contacts");
