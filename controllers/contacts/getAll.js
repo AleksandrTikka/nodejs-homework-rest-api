@@ -1,8 +1,7 @@
-const { listContacts } = require("../../models/contacts");
-const HttpError = require("../../helpers");
+const { Contact } = require("../../models/contact");
 const getAll = async (req, res, next) => {
   try {
-    const contacts = await listContacts();
+    const contacts = await Contact.find();
     if (!contacts) {
       throw error;
     }

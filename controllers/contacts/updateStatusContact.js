@@ -1,7 +1,7 @@
 const { Contact } = require("../../models/contact");
 const { HttpError } = require("../../helpers");
 
-const putOne = async (req, res, next) => {
+const updateStatusContact = async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const updatedContact = await Contact.findByIdAndUpdate(
@@ -21,4 +21,4 @@ const putOne = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = putOne;
+module.exports = updateStatusContact;
