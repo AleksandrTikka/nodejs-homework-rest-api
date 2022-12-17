@@ -1,13 +1,15 @@
-const getAll = require("./getAll");
-const getOne = require("./getOne");
-const postOne = require("./postOne");
-const deleteOne = require("./deleteOne");
-const putOne = require("./putOne");
+const getAllContacts = require("./getAllContacts");
+const getOneContact = require("./getOneContact");
+const addContact = require("./addContact");
+const deleteOneContact = require("./deleteOneContact");
+const updateContact = require("./updateContact");
+const updateStatusContact = require("./updateStatusContact");
 
 module.exports = {
-  getAll,
-  getOne,
-  postOne,
-  deleteOne,
-  putOne,
+  getAllContacts,
+  getOneContact,
+  addContact,
+  deleteOneContact,
+  updateContact,
+  updateStatusContact,
 };
