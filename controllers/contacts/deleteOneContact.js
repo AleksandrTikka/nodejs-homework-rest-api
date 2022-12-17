@@ -1,6 +1,6 @@
 const { Contact } = require("../../models/contact");
 const { HttpError } = require("../../helpers");
-const deleteOne = async (req, res, next) => {
+const deleteOneContact = async (req, res, next) => {
   {
     try {
       const { contactId } = req.params;
@@ -15,4 +15,4 @@ const deleteOne = async (req, res, next) => {
   }
 };
 
-module.exports = deleteOne;
+module.exports = deleteOneContact;

@@ -1,6 +1,6 @@
 const { Contact } = require("../../models/contact");
 const { HttpError } = require("../../helpers");
-const getOne = async (req, res, next) => {
+const getOneContact = async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const result = await Contact.findById(contactId);
@@ -13,4 +13,4 @@ const getOne = async (req, res, next) => {
   }
 };
 
-module.exports = getOne;
+module.exports = getOneContact;
