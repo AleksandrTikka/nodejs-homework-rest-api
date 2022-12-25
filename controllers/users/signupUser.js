@@ -19,6 +19,7 @@ const signupUser = async (req, res, next) => {
       // data: {
       user: {
         email: newUser.email,
+        subscription: newUser.subscription,
       },
       // },
     });
