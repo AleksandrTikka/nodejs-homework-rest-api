@@ -1,14 +1,10 @@
-const {
-  addValidateBody,
-  putValidateBody,
-  patchValidateBody,
-} = require("./validateBody");
+const validateBody = require("./validateBody");
 
 const isValidId = require("./isValidId");
+const authenticate = require("./authenticate");
 
 module.exports = {
-  addValidateBody,
-  putValidateBody,
-  patchValidateBody,
+  validateBody,
   isValidId,
+  authenticate,
 };
