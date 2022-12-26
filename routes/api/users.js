@@ -25,9 +25,9 @@ router.get("/current", authenticate, ctrl.getCurrentUser);
 router.post("/logout", authenticate, ctrl.logoutUser);
 
 router.post(
-  "/:userId/subscription",
+  "/subscription",
   validateBody.patchValidateUser(schemas.joiUpdateSchema),
-  // authenticate,
+  authenticate,
   ctrl.updateStatusUser
 );
 module.exports = router;
