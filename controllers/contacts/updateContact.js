@@ -1,4 +1,4 @@
-const { Contact } = require("../../models/contact");
+const { Contact } = require("../../models");
 const { HttpError } = require("../../helpers");
 
 const putOne = async (req, res, next) => {
@@ -12,8 +12,7 @@ const putOne = async (req, res, next) => {
       }
     );
     if (!updatedContact) {
-      next(HttpError(404, "Not found"));
-      return;
+      throw HttpError(404, "Not found");
     }
 
     res.json(updatedContact);

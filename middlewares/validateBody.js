@@ -4,7 +4,7 @@ const addValidateBody = (schema) => {
   const func = (req, res, next) => {
     const { error } = schema.validate(req.body);
     if (error) {
-      throw HttpError(400, "missing required name field");
+      next(HttpError(400, "missing required name field"));
     }
     next();
   };
@@ -33,4 +33,20 @@ const patchValidateBody = (schema) => {
   return func;
 };
 
-module.exports = { addValidateBody, putValidateBody, patchValidateBody };
+const patchValidateUser = (schema) => {
+  const func = (req, res, next) => {
+    const { error } = schema.validate(req.body);
+    if (error) {
+      next(HttpError(400, "missing fields subscription"));
+    }
+    next();
+  };
+  return func;
+};
+
+module.exports = {
+  addValidateBody,
+  putValidateBody,
+  patchValidateBody,
+  patchValidateUser,
+};
